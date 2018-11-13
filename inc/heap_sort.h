@@ -25,6 +25,7 @@ void heap_adjust(int inta[], int s, int n) {
 	inta[s] = tmp;
 }
 
+// O(nlogn)
 void heap_sort(int inta[], int n) {
 	int i = 0;
 	// Build up a max heap

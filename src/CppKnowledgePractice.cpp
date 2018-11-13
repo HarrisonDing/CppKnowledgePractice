@@ -24,19 +24,8 @@ void testHeapSort() {
 	cout << " | " << endl;
 	cout << "@@@ Heap sort done!" << endl;
 }
-int main() {
-	cout << "!!! Test Cpp practise !!!" << endl;
 
-	cout << "A: " << sizeof(A) << ", B: " << sizeof(B) << ", C: " << sizeof(C) << endl;
-
-	cout << "\n!!! Test Non virtual !!!" << endl;
-	CA *pA = (CA*)new CB();
-	delete pA;
-
-	cout << "\n!!! Test virtual !!!" << endl;
-	VA *pV = (VA*)new VB();
-	delete pV;
-
+void testConstPoint() {
 	cout << "\n!!! const validation !!!" << endl;
 	const int cv = 10;
 	int av = 20;
@@ -57,6 +46,23 @@ int main() {
 	//pc = &cv;   // error, const int* could not be assigned.
 
 	cout << "cv: " << cv << ", av: " << av << endl;
+}
+
+int main() {
+	cout << "!!! Test Cpp practise !!!" << endl;
+
+	cout << "A: " << sizeof(A) << ", B: " << sizeof(B) << ", C: " << sizeof(C) << endl;
+
+	cout << "\n!!! Test Non virtual !!!" << endl;
+	CA *pA = (CA*)new CB();
+	delete pA;
+
+	cout << "\n!!! Test virtual !!!" << endl;
+	VA *pV = (VA*)new VB();
+	delete pV;
+
+	testConstPoint();
+
 	testHeapSort();
 	return 0;
 }
