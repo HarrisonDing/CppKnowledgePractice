@@ -12,7 +12,18 @@ using namespace std;
 #include "class_sizeof.hpp"
 #include "non_virtual.h"
 #include "virtual.h"
+#include "heap_sort.h"
 
+void testHeapSort() {
+	int inta[] = {7, 4,5,1, 8,2,0,9,6,3};
+	cout << "\n@@@ Heap sort start..." << endl;
+	heap_sort(inta, 10);
+	for(int i = 0; i < 10; i ++) {
+		cout << " | " << inta[i];
+	}
+	cout << " | " << endl;
+	cout << "@@@ Heap sort done!" << endl;
+}
 int main() {
 	cout << "!!! Test Cpp practise !!!" << endl;
 
@@ -46,5 +57,6 @@ int main() {
 	//pc = &cv;   // error, const int* could not be assigned.
 
 	cout << "cv: " << cv << ", av: " << av << endl;
+	testHeapSort();
 	return 0;
 }
