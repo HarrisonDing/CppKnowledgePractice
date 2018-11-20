@@ -52,7 +52,7 @@ void testConstPoint() {
 }
 
 void testStdThread() {
-	threadTest();
+	(new ThreadSample())->threadTest();
 }
 int main() {
 	cout << "!!! Test Cpp practise !!!" << endl;

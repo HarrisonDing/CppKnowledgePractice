@@ -10,42 +10,30 @@
 
 using namespace std;
 
-void thread_function() {
-  cout << "inside thread :: ID = " << this_thread::get_id() << endl;
-}
 
-int threadTest() {
-  thread thread1(thread_function);
-  thread thread2(thread_function);
+class ThreadSample {
 
-  if (thread1.get_id() != thread2.get_id()) {
-    cout << "Both Threads have different IDs" << endl;
-  }
-  cout << "From Main Thread :: ID of Thread 1 = " << thread1.get_id() << endl;
-  cout << "From Main Thread :: ID of Thread 2 = " << thread2.get_id() << endl;
-
-  thread1.join();
-  thread2.join();
-
-  return 0;
-}
-
-
-/*class ThreadSample {
+private:
+	void thread_function() {
+	  cout << "inside thread :: ID = " << this_thread::get_id() << endl;
+	}
 
 public:
-	void start(){
-		thread t(bind1st(&ThreadSample::run,this));
-		t.detach();
-	}
+	int threadTest() {
+	  thread thread1(&ThreadSample::thread_function, this);
+	  thread thread2(&ThreadSample::thread_function, this);
 
+	  if (thread1.get_id() != thread2.get_id()) {
+	    cout << "Both Threads have different IDs" << endl;
+	  }
+	  cout << "From Main Thread :: ID of Thread 1 = " << thread1.get_id() << endl;
+	  cout << "From Main Thread :: ID of Thread 2 = " << thread2.get_id() << endl;
 
-	void run(){
-		while (true){
-			cout << "test thread id:" << std::this_thread::get_id()<<endl;
-			std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-		}
+	  thread1.join();
+	  thread2.join();
+
+	  return 0;
 	}
-};*/
+};
 
 
