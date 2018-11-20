@@ -52,7 +52,13 @@ void testConstPoint() {
 }
 
 void testStdThread() {
-	(new ThreadSample())->threadTest();
+	ThreadSample *sample = new ThreadSample(20);
+	sample->init();
+	while(true) {
+		this_thread::sleep_for(chrono::seconds(1));
+		if(sample->getTickets() <= 0)
+			break;
+	}
 }
 int main() {
 	cout << "!!! Test Cpp practise !!!" << endl;

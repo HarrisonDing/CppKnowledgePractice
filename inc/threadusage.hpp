@@ -12,27 +12,41 @@ using namespace std;
 
 
 class ThreadSample {
+private:
+	int tickets;
 
 private:
-	void thread_function() {
-	  cout << "inside thread :: ID = " << this_thread::get_id() << endl;
+	void startToSell() {
+	  while(true) {
+		  if(tickets > 0) {
+			  this_thread::sleep_for(chrono::seconds(1));
+			  cout << "seller thread :: ID = " << this_thread::get_id() << ", remaining: " << -- tickets << endl;
+		  }
+		  else break;
+	  }
 	}
 
 public:
-	int threadTest() {
-	  thread thread1(&ThreadSample::thread_function, this);
-	  thread thread2(&ThreadSample::thread_function, this);
+	ThreadSample(int num) {
+		tickets = num;
+	}
 
-	  if (thread1.get_id() != thread2.get_id()) {
-	    cout << "Both Threads have different IDs" << endl;
-	  }
-	  cout << "From Main Thread :: ID of Thread 1 = " << thread1.get_id() << endl;
-	  cout << "From Main Thread :: ID of Thread 2 = " << thread2.get_id() << endl;
+	void init() {
+		thread threada(&ThreadSample::startToSell, this);
+		thread threadb(&ThreadSample::startToSell, this);
 
-	  thread1.join();
-	  thread2.join();
+		if (threada.get_id() != threadb.get_id()) {
+		    cout << "Both Threads have different IDs" << endl;
+		}
+		cout << "From Main Thread :: ID of Thread a = " << threada.get_id() << endl;
+		cout << "From Main Thread :: ID of Thread b = " << threadb.get_id() << endl;
 
-	  return 0;
+		threada.detach();
+		threadb.detach();
+	}
+
+	int getTickets() {
+		return this->tickets;
 	}
 };
 
