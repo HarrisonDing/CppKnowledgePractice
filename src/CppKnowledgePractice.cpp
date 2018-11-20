@@ -14,6 +14,9 @@ using namespace std;
 #include "virtual.h"
 #include "heap_sort.h"
 
+#include "threadusage.hpp"
+
+
 void testHeapSort() {
 	int inta[] = {7, 4,5,1, 8,2,0,9,6,3};
 	cout << "\n@@@ Heap sort start..." << endl;
@@ -48,6 +51,9 @@ void testConstPoint() {
 	cout << "cv: " << cv << ", av: " << av << endl;
 }
 
+void testStdThread() {
+	threadTest();
+}
 int main() {
 	cout << "!!! Test Cpp practise !!!" << endl;
 
@@ -64,5 +70,10 @@ int main() {
 	testConstPoint();
 
 	testHeapSort();
+
+	cout << "\n\nBegin to test standard thread function ..." << endl;
+	testStdThread();
+	cout << "End to test standard thread function ...\n" << endl;
+
 	return 0;
 }
