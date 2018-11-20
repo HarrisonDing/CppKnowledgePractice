@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <thread>
+#include <mutex>
 
 using namespace std;
 
@@ -14,13 +15,16 @@ using namespace std;
 class ThreadSample {
 private:
 	int tickets;
+	mutex locker;
 
 private:
 	void startToSell() {
 	  while(true) {
 		  if(tickets > 0) {
 			  this_thread::sleep_for(chrono::seconds(1));
+			  locker.lock();
 			  cout << "seller thread :: ID = " << this_thread::get_id() << ", remaining: " << -- tickets << endl;
+			  locker.unlock();
 		  }
 		  else break;
 	  }
