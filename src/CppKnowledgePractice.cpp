@@ -63,11 +63,14 @@ void testStdThread() {
 }
 
 void testTemplate1() {
-	Complex c1(1, 2);
-	Complex c2(3, 4);
+	Complex<int> c1(1, 2);
+	Complex<int> c2(3, 4);
 
-	Complex c3 = c1 + c2;
+	Complex<int> c3 = c1 + c2;
 	cout << c3 << endl;
+
+	Complex<int> c4 = mySub(c1, c2);
+	cout << c4 << endl;
 }
 int main() {
 	cout << "!!! Test Cpp practise !!!" << endl;
@@ -92,7 +95,7 @@ int main() {
 
 	cout << "\n\n Begin to test template functions all in class inner ..." << endl;
 	testTemplate1();
-	cout << "\n End to test template functions all in class inner ..." << endl;
+	cout << "End to test template functions all in class inner ..." << endl;
 
 	return 0;
 }
