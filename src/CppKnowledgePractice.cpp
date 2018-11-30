@@ -15,6 +15,7 @@ using namespace std;
 #include "heap_sort.h"
 
 #include "threadusage.hpp"
+#include "template_all_function_in_class_inner.hpp"
 
 
 void testHeapSort() {
@@ -52,13 +53,21 @@ void testConstPoint() {
 }
 
 void testStdThread() {
-	ThreadSample *sample = new ThreadSample(20);
+	ThreadSample *sample = new ThreadSample(10);
 	sample->init();
 	while(true) {
 		this_thread::sleep_for(chrono::seconds(1));
 		if(sample->getTickets() <= 0)
 			break;
 	}
+}
+
+void testTemplate1() {
+	Complex c1(1, 2);
+	Complex c2(3, 4);
+
+	Complex c3 = c1 + c2;
+	cout << c3 << endl;
 }
 int main() {
 	cout << "!!! Test Cpp practise !!!" << endl;
@@ -80,6 +89,10 @@ int main() {
 	cout << "\n\nBegin to test standard thread function ..." << endl;
 	testStdThread();
 	cout << "End to test standard thread function ...\n" << endl;
+
+	cout << "\n\n Begin to test template functions all in class inner ..." << endl;
+	testTemplate1();
+	cout << "\n End to test template functions all in class inner ..." << endl;
 
 	return 0;
 }
